@@ -4,10 +4,13 @@
 // Global variable definitions (not in the header!)
 TFT_eSPI tft = TFT_eSPI();
 const char* menuItems[] = {"My Games", "Settings", "About!!"};
+
 int selectedItem = 0;
 bool lastButtonState = HIGH;
 bool lastSelectState = HIGH;
 bool lastUpState = HIGH;
+
+currentState currentScreen = Main_Menu;
 
 void setup() {
   tft.init();
@@ -18,7 +21,13 @@ void setup() {
 }
 
 void loop() {
-  downButton();
-  selectButton();
-  upButton();
+  static int lastDrawnItem = -1;      // Tracks the last drawn item
+  int menuSize = 3;
+  inputs(menuSize);                   // May change selectedItem
+
+  if (selectedItem != lastDrawnItem) {
+    drawMenu(currentScreen);
+    lastDrawnItem = selectedItem;
+  }
 }
+
