@@ -6,7 +6,11 @@
 // External global declarations
 extern TFT_eSPI tft;
 extern const char* menuItems[];
+
+extern const char* settingsItems[];
+
 enum currentState {Main_Menu, Settings};
+
 extern int selectedItem;
 extern bool lastButtonState;
 extern bool lastSelectState;
@@ -19,7 +23,12 @@ extern currentState currentScreen;
 #define BUTTON_UP 10
 
 // Function declarations
+
+
+void drawSettingsPage();
+
 void drawMenu(currentState);
+
 void aboutPage();
 void inputs(int menuSize);
 void menuSelect(int selectedItem);
