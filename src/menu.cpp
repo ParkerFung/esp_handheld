@@ -26,7 +26,7 @@ void drawMenu() {
 void aboutPage() {
   tft.fillScreen(TFT_BLACK);
   tft.setCursor(10, 30);
-  tft.setTextColor(TFT_YELLOW);
+  tft.setTextColor(TFT_WHITE);
   tft.setTextSize(2);
   tft.println("About this device");
   tft.setTextSize(1);
@@ -35,8 +35,28 @@ void aboutPage() {
   drawMenu();  // Return to menu
 }
 
+void settingsPage() {
+    tft.fillScreen(TFT_BLACK);
+    tft.setTextColor(TFT_WHITE);
+    tft.setTextSize(4);
+    tft.setCursor(10,10);
+    tft.println("Settings");
+    tft.setTextSize(2);
+    tft.setCursor(10, 50);
+    tft.println("Brightness");
+    tft.setCursor(10, 80);
+    tft.println("Volume");
+    tft.setCursor(10, 110);
+    tft.println("Controls ");
+    delay(2000); // Display for 2 seconds
+    drawMenu(); // Return to main menu
+}
+
 void menuSelect(int selectedItem) {
   switch (selectedItem) {
+    case 1:
+      settingsPage();
+      break;
     case 2:
       aboutPage();
       break;

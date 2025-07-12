@@ -23,5 +23,6 @@ void menuSelect(int selectedItem);
 void downButton();
 void upButton();
 void selectButton();
+void settingsPage();
 
 #endif
