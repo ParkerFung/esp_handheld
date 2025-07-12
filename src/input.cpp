@@ -1,5 +1,7 @@
 #include "main.h"
 
+int m = 10;
+
 void downButton() {
   bool currentButtonState = digitalRead(BUTTON_DOWN);
   if (currentButtonState == LOW && lastButtonState == HIGH) {
@@ -23,7 +25,7 @@ void upButton(){
     delay(200);
   }
   lastUpState = currentUpState;
-
+  m+1;
 }
 
 void selectButton() {
@@ -34,3 +36,4 @@ void selectButton() {
   }
   lastSelectState = currentSelectState;
 }
+//testing parker branch
