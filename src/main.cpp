@@ -4,6 +4,7 @@
 // Global variable definitions (not in the header!)
 TFT_eSPI tft = TFT_eSPI();
 const char* menuItems[] = {"My Games", "Settings", "About!!"};
+const char* settingsItems[] = {"Brightness","Volume","Controls","Back to Menu"};
 int selectedItem = 0;
 bool lastButtonState = HIGH;
 bool lastSelectState = HIGH;
