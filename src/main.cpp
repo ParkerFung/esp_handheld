@@ -6,7 +6,7 @@
 TFT_eSPI tft = TFT_eSPI();
 const char* menuItems[] = {"My Games", "Settings", "About!!"};
 
-const char* settingsItems[] = {"Brightness","Volume","Controls","Back to Menu"};
+const char* settingsLabels[] = {"Brightness","Volume","Controls","Main Menu"};
 
 
 
