@@ -9,8 +9,14 @@ extern TFT_eSPI tft;
 extern const char* menuItems[];
 extern const int menuItemsCount;
 
+
 extern const char* settingsItems[];
 extern const int settingsItemsCount;
+
+extern const char* settingsLabels[];
+
+enum settingsOptions {BRIGHTNESS, VOLUME, CONTROLS, MAIN_MENU};
+
 
 extern const char* games[];
 extern const int gamesCount;
@@ -34,6 +40,7 @@ extern currentState currentScreen;
 
 // Function declarations
 void drawSettingsPage();
+void settingSelect();
 void drawScreen(currentState);
 void drawMenu();
 void drawGameList();

@@ -79,6 +79,7 @@ void aboutPage() {
 }
 
 
+
 void drawSettingsPage() {  
   tft.fillScreen(TFT_BLACK);
   tft.setTextColor(TFT_WHITE);
@@ -126,6 +127,15 @@ void handleSelect() {
       break;
     case Game_List:
       gameSelect(selectedItem);
+
+void menuSelect(int selectedItem) {
+  switch (selectedItem) {
+    case 0:  // My Games
+      break;
+    case 1:  // Settings
+      currentScreen = Settings;
+      drawSettingsPage();
+
       break;
     case Settings:
       // implement settings selection logic here

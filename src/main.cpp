@@ -4,8 +4,12 @@
 
 TFT_eSPI tft = TFT_eSPI();
 
+
 const char* menuItems[] = {"My Games", "Settings", "About!!"};
 const int menuItemsCount = sizeof(menuItems) / sizeof(menuItems[0]);
+
+const char* settingsLabels[] = {"Brightness","Volume","Controls","Main Menu"};
+
 
 const char* settingsItems[] = {"Brightness", "Volume", "Controls", "Back to Menu"};
 const int settingsItemsCount = sizeof(settingsItems) / sizeof(settingsItems[0]);
