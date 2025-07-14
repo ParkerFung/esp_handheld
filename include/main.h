@@ -9,7 +9,9 @@ extern const char* menuItems[];
 
 extern const char* settingsItems[];
 
-enum currentState {Main_Menu, Settings};
+extern const char* games[];
+
+enum currentState {Main_Menu, Settings, About};
 
 extern int selectedItem;
 extern bool lastButtonState;
@@ -26,12 +28,13 @@ extern currentState currentScreen;
 
 
 void drawSettingsPage();
-
-void drawMenu(currentState);
+void drawScreen(currentState);
+void drawMenu();
 
 void aboutPage();
 void inputs(int menuSize);
 void menuSelect(int selectedItem);
 void settingsPage();
+void launchEmulator(const char* romPath);
 
 #endif

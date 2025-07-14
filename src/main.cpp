@@ -1,7 +1,8 @@
 #include <Arduino.h>
 #include "main.h"
-
-// Global variable definitions (not in the header!)
+#include <SD.h>
+ 
+// Global variable definitions
 TFT_eSPI tft = TFT_eSPI();
 const char* menuItems[] = {"My Games", "Settings", "About!!"};
 
@@ -16,12 +17,20 @@ bool lastUpState = HIGH;
 
 currentState currentScreen = Main_Menu;
 
+
 void setup() {
   tft.init();
   tft.setRotation(3);
+
   pinMode(BUTTON_DOWN, INPUT_PULLUP);
   pinMode(BUTTON_SELECT, INPUT_PULLUP);
   pinMode(BUTTON_UP, INPUT_PULLUP);
+
+  if (!SD.begin()) {
+    Serial.println("Failed to initialize SD card!");
+  } else {
+    Serial.println("SD card initialized.");
+  }
 }
 
 void loop() {
@@ -30,7 +39,7 @@ void loop() {
   inputs(menuSize);                   // May change selectedItem
 
   if (selectedItem != lastDrawnItem) {
-    drawMenu(currentScreen);
+    drawMenu();
     lastDrawnItem = selectedItem;
   }
 }
