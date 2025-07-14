@@ -1,23 +1,28 @@
 #include <Arduino.h>
 #include "main.h"
-#include <SD.h>
- 
-// Global variable definitions
+#include "game_input.h"
+
 TFT_eSPI tft = TFT_eSPI();
+
+
 const char* menuItems[] = {"My Games", "Settings", "About!!"};
+const int menuItemsCount = sizeof(menuItems) / sizeof(menuItems[0]);
 
 const char* settingsLabels[] = {"Brightness","Volume","Controls","Main Menu"};
 
 
+const char* settingsItems[] = {"Brightness", "Volume", "Controls", "Back to Menu"};
+const int settingsItemsCount = sizeof(settingsItems) / sizeof(settingsItems[0]);
 
+const char* games[] = {"Pong", "Breakout", "Snake", "Tile"};
+const int gamesCount = sizeof(games) / sizeof(games[0]);
+
+// Other globals
 int selectedItem = 0;
-bool lastButtonState = HIGH;
+bool lastDownState = HIGH;
 bool lastSelectState = HIGH;
 bool lastUpState = HIGH;
-
 currentState currentScreen = Main_Menu;
-
-
 void setup() {
   tft.init();
   tft.setRotation(3);
@@ -25,22 +30,26 @@ void setup() {
   pinMode(BUTTON_DOWN, INPUT_PULLUP);
   pinMode(BUTTON_SELECT, INPUT_PULLUP);
   pinMode(BUTTON_UP, INPUT_PULLUP);
-
-  if (!SD.begin()) {
-    Serial.println("Failed to initialize SD card!");
-  } else {
-    Serial.println("SD card initialized.");
-  }
 }
 
 void loop() {
-  static int lastDrawnItem = -1;      // Tracks the last drawn item
-  int menuSize = 3;
-  inputs(menuSize);                   // May change selectedItem
 
+  static int lastDrawnItem = -1;  // Track last selected item for redraw
+
+  while(currentScreen == Playing){
+    handleGameInput();
+  }
+  else{
+    inputs();
+  }
+
+  int menuSize = getMenuSize(currentScreen);
+
+  // Only redraw if the selected item has changed
   if (selectedItem != lastDrawnItem) {
-    drawMenu();
+    drawScreen(currentScreen);  //draw the correct screen based on state
     lastDrawnItem = selectedItem;
   }
 }
+
 
