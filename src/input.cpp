@@ -1,36 +1,43 @@
 #include "main.h"
 
-void inputs(int menuSize){
-  //down button
-  bool currentButtonState = digitalRead(BUTTON_DOWN);
-  if (currentButtonState == LOW && lastButtonState == HIGH) {
+void inputs() {
+  int menuSize = getMenuSize(currentScreen);
+
+  // down button
+  bool currentDownState = digitalRead(BUTTON_DOWN);
+  if (currentDownState == LOW && lastDownState == HIGH) {
     selectedItem = (selectedItem + 1) % menuSize;
-    // drawMenu();
-    delay(200);  // debounce
+    delay(200);
   }
-  lastButtonState = currentButtonState;
+  lastDownState = currentDownState;
 
-
-  //up button
+  // up button
   bool currentUpState = digitalRead(BUTTON_UP);
-  if(currentUpState == LOW && lastUpState == HIGH){
-    if(selectedItem <= 0){
-      selectedItem = menuSize - 1;
-    }
-    else{
-      selectedItem = (selectedItem - 1) % menuSize;
-    }
-    // drawMenu();
+  if (currentUpState == LOW && lastUpState == HIGH) {
+    selectedItem = (selectedItem - 1 + menuSize) % menuSize;
     delay(200);
   }
   lastUpState = currentUpState;
 
-  //select button 
-  bool currentSelectState = digitalRead(BUTTON_SELECT);
+  // select button
+  bool currentSelectState = digitalRead(BUTTON_A);
   if (currentSelectState == LOW && lastSelectState == HIGH) {
-    menuSelect(selectedItem);
-    delay(200);  // debounce
+    handleSelect();
+    delay(200);
   }
   lastSelectState = currentSelectState;
+}
 
+
+int getMenuSize(currentState screen) {
+  switch (screen) {
+    case Main_Menu:
+      return menuItemsCount;
+    case Settings:
+      return settingsItemsCount;
+    case Game_List:
+      return gamesCount;
+    default:
+      return 0;
+  }
 }
