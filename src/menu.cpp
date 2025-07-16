@@ -80,27 +80,27 @@ void aboutPage() {
 
 
 
-void drawSettingsPage() {  
-  tft.fillScreen(TFT_BLACK);
-  tft.setTextColor(TFT_WHITE);
-  tft.setTextSize(4);
-  tft.setCursor(10, 10);
-  tft.println("Settings");
+// void drawSettingsPage() {  
+//   tft.fillScreen(TFT_BLACK);
+//   tft.setTextColor(TFT_WHITE);
+//   tft.setTextSize(4);
+//   tft.setCursor(10, 10);
+//   tft.println("Settings");
 
-  for (int i = 0; i < 4; i++) {
-    int y = 20 + i * 30; // Establishing where the cursor will be on the y axis, after a selected item
+//   for (int i = 0; i < 4; i++) {
+//     int y = 20 + i * 30; // Establishing where the cursor will be on the y axis, after a selected item
 
-    if (i == selectedItem) {
-      tft.setCursor(10, y);
-      tft.print(">");
-    } else {
-      tft.setCursor(10, y);
-      tft.print(" ");
-    }
+//     if (i == selectedItem) {
+//       tft.setCursor(10, y);
+//       tft.print(">");
+//     } else {
+//       tft.setCursor(10, y);
+//       tft.print(" ");
+//     }
 
-    tft.setCursor(20, y);
-    tft.print(settingsItems[i]);
-  }}
+//     tft.setCursor(20, y);
+//     tft.print(settingsItems[i]);
+//   }}
 void settingsPage() {
   tft.fillScreen(TFT_BLACK);
   tft.setTextColor(TFT_WHITE);
@@ -126,24 +126,24 @@ void handleSelect() {
       menuSelect(selectedItem);
       break;
     case Game_List:
-      gameSelect(selectedItem);
+      gameSelect(selectedItem);}}
 
-void menuSelect(int selectedItem) {
-  switch (selectedItem) {
-    case 0:  // My Games
-      break;
-    case 1:  // Settings
-      currentScreen = Settings;
-      drawSettingsPage();
+// void menuSelect(int selectedItem) {
+//   switch (selectedItem) {
+//     case 0:  // My Games
+//       break;
+//     case 1:  // Settings
+//       currentScreen = Settings;
+//       drawSettingsPage();
 
-      break;
-    case Settings:
-      // implement settings selection logic here
-      break;
-    default:
-      break;
-  }
-}
+//       break;
+//     case Settings:
+//       // implement settings selection logic here
+//       break;
+//     default:
+//       break;
+//   }
+// }
 
 
 

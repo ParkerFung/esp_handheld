@@ -36,12 +36,7 @@ void loop() {
 
   static int lastDrawnItem = -1;  // Track last selected item for redraw
 
-  while(currentScreen == Playing){
-    handleGameInput();
-  }
-  else{
-    inputs();
-  }
+  inputs();
 
   int menuSize = getMenuSize(currentScreen);
 
