@@ -4,6 +4,19 @@
 
 This is my first ESP32 project! I built a handheld game console that can play classic games like Pong. It uses an ESP32-S3 chip with a small TFT display and some buttons.
 
+---
+
+## Background and Goals
+
+This handheld was originally intended as a platform to run a Game Boy emulator on the ESP32-S3 with an ST7789 display. However, I couldn't find any existing Game Boy emulators compatible with my specific hardware setup—especially the display and button wiring.
+
+Because of that, I began working on my own Game Boy emulator port in a separate repository. Meanwhile, this handheld project serves as the base hardware and software platform (menu system, input handling, display control) that will eventually wrap around the emulator.
+
+So far, the handheld runs simple games like Pong and provides the hardware foundation needed to integrate the emulator once it becomes usable.
+
+---
+
+
 ## What It Is
 - A small handheld game device  
 - Built with ESP32-S3 WROOM-1 microcontroller  
@@ -218,6 +231,7 @@ Make sure your GPIO pin assignments in the `User_Setup.h` file of the TFT_eSPI l
 - Maybe add a battery and charge meter  
 
 ---
+
 
 ## Tips for Beginners
 - Start simple and add features slowly  
