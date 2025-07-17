@@ -2,38 +2,36 @@
 #include "main.h"
 #include "game_input.h"
 
-int handleGameInput(int* x, int* y){
 
- // down button
-  bool currentDownState = digitalRead(BUTTON_DOWN);
-  if (currentDownState == LOW && lastDownState == HIGH) {
-    y--;
-    // delay(200);
+#include "main.h"
+#include "game_input.h"
+
+int handleGameInput(int* x, int* y) {
+  int action = 0;  // 0 = no action, 1 = exit
+
+  // Movement
+  if (digitalRead(BUTTON_UP) == LOW) {
+    (*y) -= 1;
   }
-  lastDownState = currentDownState;
+  if (digitalRead(BUTTON_DOWN) == LOW) {
+    (*y) += 1;
+  }
 
-//   // up button
-//   bool currentUpState = digitalRead(BUTTON_UP);
-//   if (currentUpState == LOW && lastUpState == HIGH) {
+  // B button (exit game) — edge detected
+  static bool lastBState = HIGH;
+  bool currentBState = digitalRead(BUTTON_B);
 
-//     // delay(200);
-//   }
-//   lastUpState = currentUpState;
+  static bool initialized = false;
+  if (!initialized) {
+    // Avoid false triggering on first call by syncing lastBState
+    lastBState = currentBState;
+    initialized = true;
+  }
 
-//   // right button
-//   bool currentSelectState = digitalRead(BUTTON_SELECT);
-//   if (currentSelectState == LOW && lastSelectState == HIGH) {
+  if (currentBState == LOW && lastBState == HIGH) {
+    action = 1;
+  }
+  lastBState = currentBState;
 
-//     // delay(200);
-//   }
-//   lastSelectState = currentSelectState;
-
-//     // left button
-//   bool currentLeftState = digitalRead(BUTTON_LEFT);
-//   if (currentLeftState == LOW && lastLeftState == HIGH) {
-
-//     // delay(200);
-//   }
-//   lastUpState = currentUpState;
-
+  return action;
 }

@@ -23,7 +23,7 @@ void drawSettingsPage() {
   }
 }
 
-void settingSelect(settingsOptions selectedItem) {
+void settingSelect(int selectedItem) {
     switch (selectedItem) {
         case BRIGHTNESS:
         // Open brightness settings
@@ -35,15 +35,11 @@ void settingSelect(settingsOptions selectedItem) {
         // Open controls settings
         break;
         case MAIN_MENU:
+          currentScreen = Main_Menu;
+          drawMenu();
         // Returns to main menu
         break;
 
     }
 }
 
-void handleSettingsMenu() {
-    if (digitalRead(BUTTON_SELECT) == LOW) {
-        settingSelect((settingsOptions) selectedItem);
-        delay (200);
-    }
-}

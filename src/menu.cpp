@@ -1,4 +1,4 @@
-#include "main.h"
+#include "menu.h"
 
 void drawScreen(currentState state){
   switch(state){
@@ -13,7 +13,9 @@ void drawScreen(currentState state){
       break;
     case Game_List:
       drawGameList();
-    default: return;
+      break;
+    default:
+      return;
   }
 }
 
@@ -52,10 +54,12 @@ void menuSelect(int selectedItem) {
       break;
     case 1:  // Settings
       currentScreen = Settings;
-      settingsPage();
+      selectedItem = 0;
+      drawSettingsPage();
       break;
     case 2:  // About
       currentScreen = About;
+      selectedItem = 0;
       aboutPage();
       break;
     default:
@@ -78,72 +82,27 @@ void aboutPage() {
   drawMenu();  // Return to menu
 }
 
-
-
-// void drawSettingsPage() {  
-//   tft.fillScreen(TFT_BLACK);
-//   tft.setTextColor(TFT_WHITE);
-//   tft.setTextSize(4);
-//   tft.setCursor(10, 10);
-//   tft.println("Settings");
-
-//   for (int i = 0; i < 4; i++) {
-//     int y = 20 + i * 30; // Establishing where the cursor will be on the y axis, after a selected item
-
-//     if (i == selectedItem) {
-//       tft.setCursor(10, y);
-//       tft.print(">");
-//     } else {
-//       tft.setCursor(10, y);
-//       tft.print(" ");
-//     }
-
-//     tft.setCursor(20, y);
-//     tft.print(settingsItems[i]);
-//   }}
-void settingsPage() {
-  tft.fillScreen(TFT_BLACK);
-  tft.setTextColor(TFT_WHITE);
-  tft.setTextSize(4);
-  tft.setCursor(10,10);
-  tft.println("Settings");
-  tft.setTextSize(2);
-  tft.setCursor(10, 50);
-  tft.println("Brightness");
-  tft.setCursor(10, 80);
-  tft.println("Volume");
-  tft.setCursor(10, 110);
-  tft.println("Controls ");
-  delay(2000); // Display for 2 seconds
-  currentScreen = Main_Menu;
-  drawMenu(); // Return to main menu
-}
-
-
 void handleSelect() {
+  currentState previousScreen = currentScreen;
+
   switch (currentScreen) {
     case Main_Menu:
       menuSelect(selectedItem);
       break;
     case Game_List:
-      gameSelect(selectedItem);}}
+      gameSelect(selectedItem);
+      break;
+    case Settings:
+      settingSelect(selectedItem);
+      break;
+  }
 
-// void menuSelect(int selectedItem) {
-//   switch (selectedItem) {
-//     case 0:  // My Games
-//       break;
-//     case 1:  // Settings
-//       currentScreen = Settings;
-//       drawSettingsPage();
+  // Only reset if screen hasn't switched to gameplay
+  if (currentScreen != Playing) {
+    selectedItem = 0;
+  }
+}
 
-//       break;
-//     case Settings:
-//       // implement settings selection logic here
-//       break;
-//     default:
-//       break;
-//   }
-// }
 
 
 
