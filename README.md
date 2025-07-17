@@ -1,4 +1,4 @@
-# ESP32 Handheld Game Console - My First Project!
+# ESP32 Handheld Game Console - My First Project
 
 ---
 
