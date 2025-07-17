@@ -259,4 +259,3 @@ This project taught me a lot about embedded programming and game development. It
 ---
 
 **Created by Parker Fung & Weston Fung**  
-My First ESP32 Project
